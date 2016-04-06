@@ -9,7 +9,7 @@ void delete(char *s,char *rm);
 void main()
   {
    FILE *fp,*fc,*fs;
-   char doc[500];
+   char doc[5000];
    
    
    fp=fopen("data.txt","r+");
@@ -20,7 +20,7 @@ void main()
         }
    else
         {
-                while(fgets(doc,500,fp)!=NULL)
+                while(fgets(doc,5000,fp)!=NULL)
                         {
                                 lower_string(doc);
                                 int i=0;
@@ -81,7 +81,7 @@ void clean(char s[]) {
 
 void clear(char s[]) {
 FILE *fs;
-char temp[500];
+char temp[5000];
 char *new_str;
 strcpy(temp,s);
 fs=fopen("stopwords.txt","r+");
