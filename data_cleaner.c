@@ -1,7 +1,6 @@
 #include<string.h>
 #include<stdio.h>
 #include<stdlib.h>
-#include<ctype.h>
   
 void lower_string(char s[]);
 void clean(char s[]);
@@ -15,7 +14,6 @@ void main()
    
    fp=fopen("data.txt","r+");
    fc=fopen("output.txt","w+");
-   //fs=fopen("stopwords.txt","r+");
    if(fp==NULL)
         {
                 printf("cant open file\n");
@@ -83,43 +81,32 @@ void clean(char s[]) {
 
 void clear(char s[]) {
 FILE *fs;
+char temp[500];
+char *new_str;
+strcpy(temp,s);
 fs=fopen("stopwords.txt","r+");
 char rm[20];
-
-                while(fgets(rm,20,fs)!=NULL)
-                        {
-
-                                        const char *o_doc = s;
-                                        char *str = strdup(o_doc);
-                                        const char *rm_word = rm;
-                                        char *sw = strdup(rm_word);
-                                        delete(str,sw);
-                                        //printf("%s\n",rm);
-                        }      
-}
-
-void delete(char *str, char *str_to_remove) {
-
+while(fgets(rm,20,fs)!=NULL){
     char *buf;
-    char *new_str;
+    rm[strcspn(rm, "\r\n")] = 0;
 
-    new_str = calloc(500, sizeof(char));
+    new_str = calloc(strlen(temp)+1, sizeof(char));
 
-    buf = strtok(str, " ");
+    buf = strtok(temp, " \t\n");
     while(buf)
     {
-        if(strcmp(buf, str_to_remove) != 0)
+        if(strcmp(buf,rm) != 0)
         {
             strcat(new_str, buf);
             strcat(new_str, " ");
         }
         buf = strtok(NULL, " \t\n");
     }
-    printf("%s\n",new_str);
-    printf("%s\n",str_to_remove);
+    strcpy(temp,new_str);
     free(new_str);
-    getchar();
+    }
+    strcat(temp,"\n");
+    strcpy(s,temp);
 
 }
-
 
