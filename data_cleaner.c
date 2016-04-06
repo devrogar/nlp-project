@@ -13,7 +13,7 @@ void main()
    
    
    fp=fopen("data.txt","r+");
-   fc=fopen("output.txt","w+");
+   fc=fopen("cleaned_data.txt","w+");
    if(fp==NULL)
         {
                 printf("cant open file\n");
