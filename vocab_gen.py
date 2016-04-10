@@ -16,7 +16,8 @@ def main():
                                         one.append(word)
                                 elif word not in two:
                                         two.append(word)
-                                        target.write(word)
-                                        target.write("\n")
+        two.sort()
+        for word in two:
+                target.write(word+'\n')
         target.close()
 main()
